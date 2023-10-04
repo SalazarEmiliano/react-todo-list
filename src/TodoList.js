@@ -1,7 +1,5 @@
-// src/TodoList.js
 import React, { useState } from 'react';
 import './styles.css'; // Import the CSS file
-
 
 function TodoList() {
   const [tasks, setTasks] = useState([]);
@@ -9,10 +7,14 @@ function TodoList() {
   const [editIndex, setEditIndex] = useState(null);
   const [editText, setEditText] = useState('');
 
+  // Update: Add state for tracking task completion
+  const [completedTasks, setCompletedTasks] = useState([]);
+
   const addTask = () => {
     if (taskText.trim() !== '') {
       setTasks([...tasks, taskText]);
       setTaskText('');
+      setCompletedTasks([...completedTasks, false]); // Initialize new task as not completed
     }
   };
 
@@ -34,8 +36,20 @@ function TodoList() {
   const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+
+    // Update: Remove corresponding completedTasks entry
+    const updatedCompletedTasks = [...completedTasks];
+    updatedCompletedTasks.splice(index, 1);
+    setCompletedTasks(updatedCompletedTasks);
+
     setEditIndex(null);
     setEditText('');
+  };
+
+  const toggleCompletion = (index) => {
+    const updatedCompletedTasks = [...completedTasks];
+    updatedCompletedTasks[index] = !completedTasks[index];
+    setCompletedTasks(updatedCompletedTasks);
   };
 
   return (
@@ -53,6 +67,11 @@ function TodoList() {
       <ul>
         {tasks.map((task, index) => (
           <li key={index}>
+            <input
+              type="checkbox"
+              checked={completedTasks[index]}
+              onChange={() => toggleCompletion(index)}
+            />
             {editIndex === index ? (
               <>
                 <input
