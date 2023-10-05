@@ -1,3 +1,5 @@
+// src/components/TodoList.js
+
 import React, { useState } from 'react';
 import './styles.css';
 
@@ -26,7 +28,7 @@ function TodoList() {
         dueDate: taskDueDate,
         priority: taskPriority,
         description: taskDescription,
-        completed: false,
+        completed: taskStatus === 'Completed' || false, // Mark as completed if the status is 'Completed'
       };
 
       setTasks([...tasks, newTask]);
@@ -62,6 +64,7 @@ function TodoList() {
               dueDate: taskDueDate,
               priority: taskPriority,
               description: editDescription, // Use separate state for description during editing
+              completed: taskStatus === 'Completed' || task.completed, // Update completion status on status change
             }
           : task
       );
@@ -136,16 +139,20 @@ function TodoList() {
     if (!dueDate) {
       return false; // No due date, not overdue
     }
-  
+
     const today = new Date();
     const due = new Date(dueDate);
-  
+
     return due < today;
   };
-  
 
   const renderTask = (task) => (
-    <li key={task.id} className={`${task.completed ? 'completed' : ''} ${isOverdue(task.dueDate) ? 'overdue' : ''}`}>
+    <li
+      key={task.id}
+      className={`${
+        task.completed ? 'completed' : ''
+      } ${isOverdue(task.dueDate) ? 'overdue' : ''}`}
+    >
       {task ? (
         <>
           <input
@@ -224,7 +231,9 @@ function TodoList() {
                   })
                 }
               >
-                {showDescription[task.id] ? 'Hide Description' : 'Show Description'}
+                {showDescription[task.id]
+                  ? 'Hide Description'
+                  : 'Show Description'}
               </button>
               <br />
               <button onClick={() => editTask(task.id)}>Edit</button>{' '}
@@ -308,7 +317,9 @@ function TodoList() {
       {completedTasks.length > 0 && showCompleted && (
         <div>
           <h2>Completed tasks</h2>
-          <ul>{completedTasksList.map((completed) => renderTask(completed))}</ul>
+          <ul>
+            {completedTasksList.map((completed) => renderTask(completed))}
+          </ul>
         </div>
       )}
     </div>
