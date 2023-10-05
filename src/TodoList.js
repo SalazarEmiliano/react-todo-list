@@ -132,8 +132,20 @@ function TodoList() {
     }));
   };
 
+  const isOverdue = (dueDate) => {
+    if (!dueDate) {
+      return false; // No due date, not overdue
+    }
+  
+    const today = new Date();
+    const due = new Date(dueDate);
+  
+    return due < today;
+  };
+  
+
   const renderTask = (task) => (
-    <li key={task.id}>
+    <li key={task.id} className={`${task.completed ? 'completed' : ''} ${isOverdue(task.dueDate) ? 'overdue' : ''}`}>
       {task ? (
         <>
           <input

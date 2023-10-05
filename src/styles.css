@@ -106,3 +106,11 @@ li:last-child {
     margin-bottom: 0;
   }
 }
+
+li.overdue {
+  background-color: #ffcccc; /* Red background for overdue tasks */
+}
+
+li.completed {
+  background-color: #d4f7dc; /* Green background for completed tasks */
+}
