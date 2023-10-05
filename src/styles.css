@@ -2,43 +2,47 @@
 
 body {
   font-family: Arial, sans-serif;
-  font-size: 16px; /* Set a base font size */
+  font-size: 16px;
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
 }
 
 .container {
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 20px 10px; /* Responsive padding */
+  padding: 30px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-  font-size: 1.5em; /* 24px */
+  font-size: 2em;
   margin-bottom: 20px;
 }
 
-input[type="text"] {
+input[type="text"],
+select,
+textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* New: Box shadow for input */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
 }
 
 button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* New: Transition effect */
+  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
 button:hover {
@@ -52,36 +56,53 @@ ul {
 
 li {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
+  align-items: flex-start;
+  padding: 16px 0;
   border-bottom: 1px solid #ccc;
-  background-color: #f9f9f9; /* New: Background color */
+  background-color: #f9f9f9;
 }
 
 li:hover {
-  background-color: #eaeaea; /* New: Hover background color */
+  background-color: #eaeaea;
 }
 
 li:last-child {
   border-bottom: none;
 }
 
+.task-text {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
 @media (min-width: 768px) {
   .container {
-    max-width: 600px;
-    padding: 30px;
+    max-width: 800px;
   }
 
   h1 {
-    font-size: 2em; /* 32px */
+    font-size: 2.5em;
   }
 
-  input[type="text"] {
-    font-size: 16px;
+  input[type="text"],
+  select,
+  textarea {
+    font-size: 18px;
   }
 
   button {
-    font-size: 16px;
+    font-size: 18px;
+  }
+
+  li {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .task-text {
+    flex-grow: 1;
+    margin-bottom: 0;
   }
 }
