@@ -108,9 +108,17 @@ li:last-child {
 }
 
 li.overdue {
-  background-color: #ffcccc; /* Red background for overdue tasks */
+  background-color: #e57373; /* Red background for overdue tasks */
 }
 
 li.completed {
-  background-color: #d4f7dc; /* Green background for completed tasks */
+  background-color: #4caf50; /* Green background for completed tasks */
+}
+
+li.in-progress {
+  background-color: #ffd54f;
+}
+
+li.cancelled {
+  background-color: #a9a9a9;
 }
