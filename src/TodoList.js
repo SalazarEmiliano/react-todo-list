@@ -245,7 +245,8 @@ function TodoList() {
           <strong>Due Date:</strong> {task.dueDate || 'Not set'}
           {showDescription[task.id] && (
             <>
-              <strong>Description:</strong> {task.description}
+              <strong>Description:</strong>
+              <div className="description-text">{task.description}</div>
             </>
           )}
           <button
